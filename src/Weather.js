@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./Weather.css";
 
 
-export default function Weather() {
-  let weatherData = {
-    city: "Valencia",
-    temperature: 20,
-    date: "Tuesday 13:32",
-    description: "Sunny",
-    humidity: 20,
-    wind: 4,
-    max: 22,
-    min: 18,
-    realFeel: 21
-  };
-
-  return (
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ready:false});
+function handleResponse (response) {
+setWeatherData({
+  ready: true, 
+  temperature: response.data.main.temp,
+  wind: response.data.wind.speed,
+  city: response.data.name,
+  humidity: response.data.main.humidity,
+  realFeel: response.data.main.feels_like,
+  max: response.data.main.temp_max,
+  min: response.data.main.temp_min,
+  description: response.data.weather[0].description,
+})
+}
+if (weatherData.ready) {
+return (
     <div className="Weather">
         <form>
           <input
@@ -33,12 +37,12 @@ export default function Weather() {
         </form>
         <h2>
           <span className="city">{weatherData.city}</span>
-          <div className="dayTime">{weatherData.date}</div>
-          <div className="description">{weatherData.description}</div>
+          <div className="dayTime">Tuesday 13:32</div>
+          <div className="description text-capitalize">{weatherData.description}</div>
         </h2>
         <p>
-          <img src="images/sun.png" alt="sunIcon" className="mainWeatherIcon" />
-          <span className="temperature"> {weatherData.temperature}</span>
+          <img src="images/sun.png" alt="{weatherData.description}" className="mainWeatherIcon" />
+          <span className="temperature"> {Math.round(weatherData.temperature)}</span>
           <span className="units">
             <a href="/" className="active celsius">
               ºC
@@ -57,7 +61,7 @@ export default function Weather() {
           </div>
           <div className="col-6">
             <div className="card">
-              <div className="card-body">Wind: {weatherData.wind} km/h</div>
+              <div className="card-body">Wind: {Math.round(weatherData.wind)} km/h</div>
             </div>
           </div>
         </div>
@@ -65,18 +69,25 @@ export default function Weather() {
           <div className="col-6">
             <div className="card">
               <div className="card-body">
-                Max: {weatherData.max}ºC | Min: {weatherData.min}ºC
+                Max: {Math.round(weatherData.max)}ºC | Min: {Math.round(weatherData.min)}ºC
               </div>
             </div>
           </div>
           <div className="col-6">
             <div className="card">
               <div className="card-body">
-                Real feel: {weatherData.realFeel}ºC
+                Real feel: {Math.round(weatherData.realFeel)}ºC
               </div>
             </div>
           </div>
         </div>
     </div>
   );
+} else {
+ let apiKey = "74c313891ab91d11cf96230279a062ab";
+  let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(handleResponse);
+
+  return "Loading.."
+}
 }
