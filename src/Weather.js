@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import FormattedDate from "./FormattedDate.js";
+import WeatherIcon from "./WeatherIcon.js";
 import axios from "axios";
 import "./Weather.css";
 
 
 export default function Weather(props) {
+ 
   const [weatherData, setWeatherData] = useState({ ready:false });
   const [city, setCity] = useState(props.defaultCity);
+
 function handleResponse (response) {
 setWeatherData({
   ready: true, 
@@ -19,6 +22,7 @@ setWeatherData({
   min: response.data.main.temp_min,
   description: response.data.weather[0].description,
   date: new Date(response.data.dt * 1000),
+  icon: response.data.weather[0].icon,
 })
 }
 function search(){
@@ -35,6 +39,7 @@ function handleSubmit(event) {
 function changeCity(event) {
 setCity(event.target.value);
 }
+
 if (weatherData.ready) {
 return (
     <div className="Weather">
@@ -59,7 +64,9 @@ return (
           <div className="description text-capitalize">{weatherData.description}</div>
         </h2>
         <p>
-          <img src="images/sun.png" alt="{weatherData.description}" className="mainWeatherIcon" />
+          <span className="mainWeatherIcon">
+          <WeatherIcon code={weatherData.icon} />
+           </span>
           <span className="temperature"> {Math.round(weatherData.temperature)}</span>
           <span className="units">
             <a href="/" className="active celsius">
@@ -105,4 +112,4 @@ return (
   search();
   return "Loading.."
 }
-}
+  }

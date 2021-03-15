@@ -67,16 +67,18 @@
 .Weather p {
   color: #737373;
   font-size: 80px;
-  text-align: center;
-  margin: 25px;
+  margin: 25px 60px 0px;
 }
-.Weather .mainWeatherIcon {
-  max-width: 150px;
+
+.Weather .temperature {
+   position: relative;
+   bottom: 50px;
 }
+
 .Weather .units {
   font-size: 20px;
   position: relative;
-  bottom: 40px;
+  bottom: 90px;
 }
 .Weather .celsius {
   color: #737373;
