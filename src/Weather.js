@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormattedDate from "./FormattedDate.js";
 import WeatherIcon from "./WeatherIcon.js";
+import WeatherTemperature from "./WeatherTemperature.js";
 import axios from "axios";
 import "./Weather.css";
 
@@ -66,16 +67,9 @@ return (
         <p>
           <span className="mainWeatherIcon">
           <WeatherIcon code={weatherData.icon} />
-           </span>
-          <span className="temperature"> {Math.round(weatherData.temperature)}</span>
-          <span className="units">
-            <a href="/" className="active celsius">
-              ºC
-            </a>{" "}
-            |
-            <a href="/" className="fahrenheit">
-              ºF
-            </a>
+          </span>
+          <span className="WeatherTemperature">
+          <WeatherTemperature celsius={Math.round(weatherData.temperature)} />
           </span>
         </p>
         <div className="row conditions">
