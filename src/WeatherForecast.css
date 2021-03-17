@@ -1,0 +1,25 @@
+
+.projections {
+  margin: 30px 5px 0px;
+}
+
+.col {
+  padding: 0px 5px;
+}
+
+.week {
+  background-color: #d96305;
+  color: #fafafa;
+  font-weight: 500;
+  border: 2px solid #d96305;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 25px;
+  font-size: 16px;
+  box-shadow: 3px 3px 8px rgba(166, 166, 166, 0.5);
+  transition: all 200ms ease;
+  padding: 6px;
+}
+.week:hover {
+  background-color: #c85b02;
+}

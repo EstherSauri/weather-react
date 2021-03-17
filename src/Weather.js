@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import FormattedDate from "./FormattedDate.js";
-import WeatherIcon from "./WeatherIcon.js";
+import MainWeatherIcon from "./MainWeatherIcon.js";
 import WeatherTemperature from "./WeatherTemperature.js";
+import WeatherForecast from "./WeatherForecast.js";
 import axios from "axios";
 import "./Weather.css";
 
@@ -53,11 +54,7 @@ return (
             onChange={changeCity}
           />
           <input type="submit" value="Search" className="searchButton" />
-          <input
-            type="submit"
-            value="Current location"
-            className="currentLocation"
-          />
+
         </form>
         <h2>
           <span className="city">{weatherData.city}</span>
@@ -65,40 +62,39 @@ return (
           <div className="description text-capitalize">{weatherData.description}</div>
         </h2>
         <p>
-          <span className="mainWeatherIcon">
-          <WeatherIcon code={weatherData.icon} />
-          </span>
-          <span className="WeatherTemperature">
+          <MainWeatherIcon code={weatherData.icon} />
           <WeatherTemperature celsius={Math.round(weatherData.temperature)} />
-          </span>
         </p>
         <div className="row conditions">
           <div className="col-6">
             <div className="card">
-              <div className="card-body">Humidity: {weatherData.humidity}%</div>
+              <div className="card-body weatherConditions">Humidity: {weatherData.humidity}%</div>
             </div>
           </div>
           <div className="col-6">
             <div className="card">
-              <div className="card-body">Wind: {Math.round(weatherData.wind)} km/h</div>
+              <div className="card-body weatherConditions">Wind: {Math.round(weatherData.wind)} km/h</div>
             </div>
           </div>
         </div>
         <div className="row conditions">
           <div className="col-6">
             <div className="card">
-              <div className="card-body">
+              <div className="card-body weatherConditions">
                 Max: {Math.round(weatherData.max)}ºC | Min: {Math.round(weatherData.min)}ºC
               </div>
             </div>
           </div>
           <div className="col-6">
             <div className="card">
-              <div className="card-body">
+              <div className="card-body weatherConditions">
                 Real feel: {Math.round(weatherData.realFeel)}ºC
               </div>
             </div>
           </div>
+        </div>
+        <div className="WeatherForecast">
+        <WeatherForecast city={weatherData.city} />
         </div>
     </div>
   );
