@@ -1,7 +1,7 @@
 .Weather {
   border: 1px solid #a6a6a6;
   border-radius: 4px;
-  margin: 30px auto;
+  margin: 30px auto 10px;
   box-shadow: 3px 3px 8px rgba(166, 166, 166, 0.5);
   background-color: #fafafa;
   padding: 30px 10px;

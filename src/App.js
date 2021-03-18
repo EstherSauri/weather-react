@@ -8,6 +8,9 @@ export default function App() {
       <div className="container">
       <Weather defaultCity="Valencia"/>
       </div>
+      <footer>
+        <a href="https://github.com/EstherSauri/weather-react" className="github-link"  target="_blank">Open-source code</a> by Esther Sauri
+      </footer>
     </div>
   );
 }

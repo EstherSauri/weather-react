@@ -1,0 +1,15 @@
+.App footer {
+  font-size: 16px;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+}
+
+.App .github-link {
+  color: #1bb2a8;
+}
+
+.App .github-link:hover {
+  color: #199f95;
+}
